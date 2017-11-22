@@ -1,8 +1,12 @@
 version: 2
-jobs:
-   build:
-     docker:
-       - image: circleci/node:4.8.2
-     steps:
-       - checkout
-       - run: echo "hello world"
+machine:
+  xcode:
+    version: "8.0"
+dependencies:
+  override:
+    - bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3 --without development
+  cache_directories:
+    - vendor/bundle
+test:
+  override:
+    - bundle exec fastlane test
