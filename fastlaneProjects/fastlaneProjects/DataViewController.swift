@@ -24,6 +24,14 @@ class DataViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func buttonPressed(_ sender: Any)
+    {
+        dataLabel.text = "changed"
+    }
+    public func testingFunction()->Int
+    {
+        return 1
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.dataLabel!.text = dataObject

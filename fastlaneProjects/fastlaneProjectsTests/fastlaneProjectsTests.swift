@@ -21,7 +21,10 @@ class fastlaneProjectsTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
+    func testExample()
+    {
+        let dataVC: DataViewController = DataViewController()
+        XCTAssert(dataVC.testingFunction() == 1,"it's not working fine")
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
