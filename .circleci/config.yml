@@ -1,7 +1,6 @@
-version: 2
 machine:
   xcode:
-    version: "8.0"
+    version: "7.3"
 dependencies:
   override:
     - bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3 --without development
