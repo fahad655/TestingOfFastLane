@@ -10,7 +10,7 @@ jobs:
     macos:
      xcode: "9.0"
      ruby:
-        version: ruby-2.4.2
+        version: rbx-2.2.2   
 
     # Define the steps required to build the project.
     steps:
