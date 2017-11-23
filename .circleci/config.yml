@@ -18,7 +18,7 @@ jobs:
 
       # Get the code from the VCS provider.
       - checkout
-      - run: brew install chruby 2.2.5
+      - run: chruby 2.2.5 && bundle install
       # - restore_cache:
       #       key: 1-gems-{{ checksum "Gemfile.lock" }}
             
