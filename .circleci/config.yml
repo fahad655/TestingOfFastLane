@@ -9,8 +9,6 @@ jobs:
     # Specify the Xcode version to use.
     macos:
      xcode: "9.0"
-     ruby:
-        version: rbx-2.2.2   
 
     # Define the steps required to build the project.
     steps:
