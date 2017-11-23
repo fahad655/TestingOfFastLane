@@ -9,12 +9,13 @@ jobs:
     # Specify the Xcode version to use.
     #macos:
     docker:
-       - image: circleci/ruby:2.4-node
+        - image: circleci/ruby:2.4-node
+        - xcode: "9.1.0"
     #  pre:
     #     - brew install rbenv ; brew link --overwrite ruby
     #     - sudo gem install bundler
 
-      xcode: "9.1.0"
+      
      
     # 
 
