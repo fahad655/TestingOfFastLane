@@ -19,8 +19,7 @@ jobs:
       - Run:
           name: bundle runner
           command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3 --without development
-cache_directories:
-            command: vendor/bundle
+cache_directories: vendor/bundle
       
      
       # Run tests.
