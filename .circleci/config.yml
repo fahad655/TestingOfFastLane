@@ -50,3 +50,14 @@ jobs:
       - run:
           name: Run tests
           command: bundle exec fastlane test
+
+      - store_test_results:
+          path: test_output/report.junit
+      - store_artifacts:
+          path: /tmp/test-results
+          # Destination is the name of the item in the Artifacts tab
+          # that will contain the paths specified in this step.
+          destination: scan-test-results
+      - store_artifacts:
+          path: ~/Library/Logs/scan
+          destination: scan-logs
