@@ -9,54 +9,36 @@ jobs:
     # Specify the Xcode version to use.
     macos:
       xcode: "9.1.0"
+      pre:
+         - sudo ruby-install ruby --HEAD
+    # docker:
+    #   - image: circleci/ruby:2.4-node
 
-    environment:
-      FL_OUTPUT_DIR: $CIRCLE_WORKING_DIRECTORY
-      FASTLANE_LANE: test
-    shell: /bin/bash --login -o pipefail
+    # Define the steps required to build the project.
     steps:
+
+      # Get the code from the VCS provider.
       - checkout
-      - run: mkdir $FL_OUTPUT_DIR
-      - run: bundle install
-      - run:
-          name: Fastlane
-          command: bundle exec fastlane test
-      - run:
-          command: cp $FL_OUTPUT_DIR/scan/report.junit $FL_OUTPUT_DIR/scan/results.xml
-          when: always
-      - store_artifacts:
-          path: /Users/distiller/output
-      - store_test_results:
-          path: /Users/distiller/output/scan
-      
-    # # docker:
-    # #   - image: circleci/ruby:2.4-node
-
-    # # Define the steps required to build the project.
-    # steps:
-
-    #   # Get the code from the VCS provider.
-    #   - checkout
           
-    #   # - restore_cache:
-    #   #       key: 1-gems-{{ checksum "Gemfile.lock" }}
+      # - restore_cache:
+      #       key: 1-gems-{{ checksum "Gemfile.lock" }}
             
-    #   - run: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3 --without development
+      - run: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3 --without development
      
-    #   - save_cache:
-    #       key: 1-gems-{{ checksum "Gemfile.lock" }}
-    #       paths:
-    #         - vendor/bundle
+      - save_cache:
+          key: 1-gems-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
      
-    #     # Download CocoaPods specs via HTTPS (faster than Git)
-    #     # and install CocoaPods.
-    #     # - run:
-    #     #     name: Install CocoaPods
-    #     #     command: |
-    #     #       curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
-    #     #       pod install
+        # Download CocoaPods specs via HTTPS (faster than Git)
+        # and install CocoaPods.
+        # - run:
+        #     name: Install CocoaPods
+        #     command: |
+        #       curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
+        #       pod install
 
-    #   # Run tests.
-    #   - run:
-    #       name: Run tests
-    #       command: bundle exec fastlane test
+      # Run tests.
+      - run:
+          name: Run tests
+          command: bundle exec fastlane test
