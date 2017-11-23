@@ -9,6 +9,8 @@ jobs:
     # Specify the Xcode version to use.
     macos:
       xcode: "9.1.0"
+      pre:
+        - brew install ruby ; brew link --overwrite ruby
     # docker:
     #   - image: circleci/ruby:2.4-node
 
