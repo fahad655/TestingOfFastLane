@@ -76,7 +76,7 @@ workflows:
   version: 2
   build-and-deploy:
     jobs:
-      #- build-and-test
+      - build-and-test
       # - deploy:
       #     requires:
       #       - build-and-test
