@@ -2,15 +2,15 @@ Version: 2
 
 jobs:
    build:
-        xcode:
-        version: "9.0"
+         xcode:
+         version: "9.0"
     docker:
         - image: circleci/ruby:2.3
-dependencies:
-  override:
-    - bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3 --without development
+        
+    steps:
+        - checkout
+        - bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3 --without development
   cache_directories:
-    - vendor/bundle
-test:
-  override:
-    - bundle exec fastlane test
+        - vendor/bundle
+    test:
+        - bundle exec fastlane test
