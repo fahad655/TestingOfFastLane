@@ -6,7 +6,8 @@ version: 2
 # Define the jobs for the current project.
 jobs:
   build:
-
+    docker:
+    - image: circleci/ruby:2.4-node
     # Specify the Xcode version to use.
     macos:
       xcode: "9.0"
