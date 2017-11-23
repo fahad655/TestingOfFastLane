@@ -45,9 +45,9 @@ jobs:
           path: ~/Library/Logs/scan
           destination: scan-logs
 
-  deploy:
-    macos:
-      xcode: "8.3.3"
+  # deploy:
+  #   macos:
+  #     xcode: "8.3.3"
 
     # steps:
     #   - checkout
@@ -77,9 +77,9 @@ workflows:
   build-and-deploy:
     jobs:
       - build-and-test
-      - deploy:
-          requires:
-            - build-and-test
+      # - deploy:
+      #     requires:
+      #       - build-and-test
           filters:
             branches:
               only: master
