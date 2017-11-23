@@ -49,28 +49,28 @@ jobs:
     macos:
       xcode: "8.3.3"
 
-    #steps:
-      - checkout
+    # steps:
+    #   - checkout
 
-      # Set up code signing via Fastlane Match.
-      - run:
-          name: Set up code signing
-          command: fastlane match development --readonly
+    #   # Set up code signing via Fastlane Match.
+    #   - run:
+    #       name: Set up code signing
+    #       command: fastlane match development --readonly
 
-      # Build the release version of the app.
-      - run:
-          name: Build IPA
-          command: fastlane gym
+    #   # Build the release version of the app.
+    #   - run:
+    #       name: Build IPA
+    #       command: fastlane gym
 
-      # Store the IPA file in the build artifacts
-      - store_artifacts:
-          path: ./MyApp.ipa
-          destination: ipa
+    #   # Store the IPA file in the build artifacts
+    #   - store_artifacts:
+    #       path: ./MyApp.ipa
+    #       destination: ipa
 
-      # Deploy!
-      - run:
-          name: Deploy to App Store
-          command: fastlane spaceship
+    #   # Deploy!
+    #   - run:
+    #       name: Deploy to App Store
+    #       command: fastlane spaceship
 
 workflows:
   version: 2
