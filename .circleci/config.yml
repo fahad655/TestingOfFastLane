@@ -9,23 +9,26 @@ jobs:
 
     # Specify the Xcode version to use.
     macos:
-      xcode: "9.0"
+      xcode: "8.3.3"
 
     # Define the steps required to build the project.
     steps:
 
       # Get the code from the VCS provider.
       - checkout
-      - Run:
-          name: bundle runner
-          command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3 --without development
-cache_directories: vendor/bundle
-      
-     
+
+        # Download CocoaPods specs via HTTPS (faster than Git)
+        # and install CocoaPods.
+        # - run:
+        #     name: Install CocoaPods
+        #     command: |
+        #       curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
+        #       pod install
+
       # Run tests.
       - run:
           name: Run tests
-          command:  bundle exec fastlane test
+          command: fastlane test
           environment:
             SCAN_DEVICE: iPhone 6
             SCAN_SCHEME: WebTests
@@ -41,3 +44,42 @@ cache_directories: vendor/bundle
       - store_artifacts:
           path: ~/Library/Logs/scan
           destination: scan-logs
+
+  deploy:
+    macos:
+      xcode: "8.3.3"
+
+    steps:
+      - checkout
+
+      # Set up code signing via Fastlane Match.
+      - run:
+          name: Set up code signing
+          command: fastlane match development --readonly
+
+      # Build the release version of the app.
+      - run:
+          name: Build IPA
+          command: fastlane gym
+
+      # Store the IPA file in the build artifacts
+      - store_artifacts:
+          path: ./MyApp.ipa
+          destination: ipa
+
+      # Deploy!
+      - run:
+          name: Deploy to App Store
+          command: fastlane spaceship
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build-and-test
+      - deploy:
+          requires:
+            - build-and-test
+          filters:
+            branches:
+              only: master
