@@ -28,7 +28,7 @@ jobs:
       # Run tests.
       - run:
           name: Run tests
-          command: fastlane test
+          command: bundle exec fastlane test
           environment:
             SCAN_DEVICE: iPhone 6
             SCAN_SCHEME: WebTests
