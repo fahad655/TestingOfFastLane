@@ -72,14 +72,14 @@ jobs:
     #       name: Deploy to App Store
     #       command: fastlane spaceship
 
-# workflows:
-#   version: 2
-#   build-and-deploy:
-#     jobs:
-#       - build-and-test
-#       # - deploy:
-#       #     requires:
-#       #       - build-and-test
-#       filters:
-#             branches:
-#               only: master
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      #- build-and-test
+      # - deploy:
+      #     requires:
+      #       - build-and-test
+      filters:
+            branches:
+              only: master
