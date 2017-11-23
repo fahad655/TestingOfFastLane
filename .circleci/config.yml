@@ -49,7 +49,7 @@ jobs:
     macos:
       xcode: "8.3.3"
 
-    steps:
+    #steps:
       - checkout
 
       # Set up code signing via Fastlane Match.
