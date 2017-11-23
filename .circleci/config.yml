@@ -9,7 +9,7 @@ jobs:
     # Specify the Xcode version to use.
     macos:
       xcode: "9.1.0"
-      command: chruby 2.2.5
+      
     # docker:
     #   - image: circleci/ruby:2.4-node
 
@@ -18,7 +18,7 @@ jobs:
 
       # Get the code from the VCS provider.
       - checkout
-          
+      - run: chruby 2.2.5
       # - restore_cache:
       #       key: 1-gems-{{ checksum "Gemfile.lock" }}
             
