@@ -7,9 +7,10 @@ version: 2
 jobs:
   build:
     # Specify the Xcode version to use.
-      macos:
-        xcode: "9.1.0"
-     
+    macos:
+      xcode: "9.1.0"
+      pre:
+        - brew install ruby ; brew link --overwrite ruby
     # docker:
     #   - image: circleci/ruby:2.4-node
 
@@ -41,55 +42,3 @@ jobs:
       - run:
           name: Run tests
           command: bundle exec fastlane test
-            
-
-      # Collect XML test results data to show in the UI,
-      # and save the same XML files under test-results folder
-      # in the Artifacts tab.
-    #   - store_test_results:
-    #       path: test_output/report.xml
-    #   - store_artifacts:
-    #       path: /tmp/test-results
-    #       destination: scan-test-results
-    #   - store_artifacts:
-    #       path: ~/Library/Logs/scan
-    #       destination: scan-logs
-
-  # deploy:
-  #   macos:
-  #     xcode: "8.3.3"
-
-    # steps:
-    #   - checkout
-
-    #   # Set up code signing via Fastlane Match.
-    #   - run:
-    #       name: Set up code signing
-    #       command: fastlane match development --readonly
-
-    #   # Build the release version of the app.
-    #   - run:
-    #       name: Build IPA
-    #       command: fastlane gym
-
-    #   # Store the IPA file in the build artifacts
-    #   - store_artifacts:
-    #       path: ./MyApp.ipa
-    #       destination: ipa
-
-    #   # Deploy!
-    #   - run:
-    #       name: Deploy to App Store
-    #       command: fastlane spaceship
-
-# workflows:
-#   version: 2
-#   build-and-deploy:
-#     jobs:
-#       - build-and-test
-#       # - deploy:
-#       #     requires:
-#       #       - build-and-test
-#       filters:
-#             branches:
-#               only: master
