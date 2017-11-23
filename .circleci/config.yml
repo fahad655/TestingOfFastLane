@@ -17,6 +17,7 @@ jobs:
 
       # Get the code from the VCS provider.
       - checkout
+      
       - run:
         name: Set Ruby Version
         command:  echo "ruby-2.4" > ~/.ruby-version
@@ -24,6 +25,11 @@ jobs:
       - run:
           name: bundle setup
           command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3 --without development
+
+     - save_cache:
+          key: 1-gems-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
         # Download CocoaPods specs via HTTPS (faster than Git)
         # and install CocoaPods.
         # - run:
