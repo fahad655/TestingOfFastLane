@@ -7,13 +7,16 @@ version: 2
 jobs:
   build:
     # Specify the Xcode version to use.
-    macos:
+    #macos:
+    docker:
+       - image: circleci/ruby:2.4-node
+    #  pre:
+    #     - brew install rbenv ; brew link --overwrite ruby
+    #     - sudo gem install bundler
+
       xcode: "9.1.0"
-      pre:
-        - brew install rbenv ; brew link --overwrite ruby
-        - sudo gem install bundler
-    # docker:
-    #   - image: circleci/ruby:2.4-node
+     
+    # 
 
     # Define the steps required to build the project.
     steps:
