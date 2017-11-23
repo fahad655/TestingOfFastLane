@@ -10,7 +10,7 @@ jobs:
     macos:
      xcode: "9.0"
      ruby:
-        version: 1.9.3-p385
+        version: ruby-2.4.2
 
 
     # Define the steps required to build the project.
@@ -23,9 +23,9 @@ jobs:
           name: pre-start simulator
           command: xcrun instruments -w "iPhone 7 (11.0) [" || true
           
-    #   - run:
-    #         name: Set Ruby Version
-    #         command: echo "ruby-2.4.2" > ~/.ruby-version
+      - run:
+            name: Set Ruby Version
+            command: echo "ruby-2.4.2" > ~/.ruby-version
 
       - restore_cache:
             key: 1-gems-{{ checksum "Gemfile.lock" }}
