@@ -16,11 +16,12 @@ jobs:
 
       # Get the code from the VCS provider.
       - checkout
-      - bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3 --without development
+      - Run:
+          name: bundle runner
+          command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3 --without development
 cache_directories:
-      - vendor/bundle
-      # Download CocoaPods specs via HTTPS (faster than Git)
-      # and install CocoaPods.
+            command: vendor/bundle
+      
      
       # Run tests.
       - run:
