@@ -19,7 +19,7 @@ jobs:
       # Get the code from the VCS provider.
       - checkout
 
-      - command: bundle update
+      - run: bundle update 
       # - restore_cache:
       #     keys:
       #     - v1-gems-{{ checksum "Gemfile.lock" }}
