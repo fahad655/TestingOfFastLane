@@ -19,13 +19,22 @@ jobs:
       # Get the code from the VCS provider.
       - checkout
       - restore_cache:
-            key: 1-gems-{{ checksum "Gemfile.lock" }}
-
-      #- run: bundle update
-      - run: bundle check --path=vendor/bundle || bundle update --path=vendor/bundle --jobs=4 --retry=3 --without development
-     
+          keys:
+          - v1-gems-{{ checksum "Gemfile.lock" }}
+          # Fall back to using the latest cache if no exact match is found.
+          - v1-gems-
+      # Install gems.
+      - run:
+          name: Bundle install
+          command: bundle check || bundle update
+          environment:
+            BUNDLE_JOBS: 4
+            BUNDLE_RETRY: 3
+            # This is the path where all the gems will be installed, and
+            # which CircleCI will later cache.
+            BUNDLE_PATH: vendor/bundle
       - save_cache:
-          key: 1-gems-{{ checksum "Gemfile.lock" }}
+          key: v1-gems-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
      
