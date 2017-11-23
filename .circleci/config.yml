@@ -17,7 +17,7 @@ jobs:
 
       # Get the code from the VCS provider.
       - checkout
-      run:
+      - run:
         name: Set Ruby Version
         command:  echo "ruby-2.4" > ~/.ruby-version
 
