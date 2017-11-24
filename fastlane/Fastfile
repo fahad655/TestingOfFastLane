@@ -27,7 +27,7 @@ platform :ios do
   lane :test do
     scan
   	 xcov(
-  		output_directory: "xcov_output"
+  		coveralls_repo_token:"uPMr4gatZBPZ9You0CGJYZSBjsuKy656O"
    	 )
   end
 
