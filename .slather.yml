@@ -1,7 +1,0 @@
-# .slather.yml
-coverage_service: coveralls
-xcodeproj: fastlaneProjects.xcodeproj
-scheme: fastlaneProjects
-ignore:
-  - ExamplePodCode/*
-  - ProjectTestsGroup/*

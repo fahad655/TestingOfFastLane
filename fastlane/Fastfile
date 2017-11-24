@@ -26,10 +26,10 @@ platform :ios do
   desc "Runs all the tests"
   lane :test do
     scan
-    slather(
-      	scheme: "fastlaneProjects",
- 	proj: "fastlaneProjects.xcodeproj"
-)
+  	 xcov(
+     	scheme: "somethingnew",
+  		output_directory: "xcov_output"
+   	 )
   end
 
   desc "Submit a new Beta Build to Apple TestFlight"
