@@ -18,16 +18,15 @@ jobs:
 
       # Get the code from the VCS provider.
       - checkout
-
-     
-   # Restore bundle cache
+      
+       # Restore bundle cache
       - type: cache-restore
         name: Restore bundle cache
         key: rails-demo-bundle-{{ checksum "Gemfile.lock" }}
 
       - run:
           name: Bundle Install
-          command: bundle update --path vendor/bundle
+          command: bundle install --path vendor/bundle
 
       # Store bundle cache
       - type: cache-save
@@ -35,6 +34,9 @@ jobs:
         key: rails-demo-bundle-{{ checksum "Gemfile.lock" }}
         paths:
           - vendor/bundle
+
+
+      # - run: bundle update 
      
         # Download CocoaPods specs via HTTPS (faster than Git)
         # and install CocoaPods.
@@ -50,9 +52,9 @@ jobs:
           command: bundle exec fastlane test
 
       - store_test_results:
-          path: ~/Library/Logs/report.junit
+          path: ~/Library/test_output/report.junit
       - store_artifacts:
-          path: ~/Library/Logs/test-results
+          path: ~/Library/test_output/test-results
           # Destination is the name of the item in the Artifacts tab
           # that will contain the paths specified in this step.
           destination: scan-test-results
