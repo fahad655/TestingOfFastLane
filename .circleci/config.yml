@@ -25,8 +25,8 @@ jobs:
         key: rails-demo-bundle-{{ checksum "Gemfile.lock" }}
 
       - run:
-          name: Bundle Install
-          command: bundle install --path vendor/bundle
+          name: Bundle update 
+          command: bundle update #--path vendor/bundle 
 
       # Store bundle cache
       - type: cache-save
