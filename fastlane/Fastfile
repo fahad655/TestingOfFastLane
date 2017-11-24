@@ -27,7 +27,6 @@ platform :ios do
   lane :test do
     scan
   	 xcov(
-     	scheme: "somethingnew",
   		output_directory: "xcov_output"
    	 )
   end
