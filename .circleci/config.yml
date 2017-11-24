@@ -50,6 +50,7 @@ jobs:
       - run:
           name: Run tests
           command: bundle exec fastlane test
+          command: bundle exec slather
 
       - store_test_results:
           path: ~/Library/test_output/report.junit

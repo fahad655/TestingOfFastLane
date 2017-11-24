@@ -27,8 +27,8 @@ platform :ios do
   lane :test do
     scan
     slather(
-      scheme: "fastlaneProjects",
- 	    proj: "fastlaneProjects.xcodeproj"
+      	scheme: "fastlaneProjects",
+ 	proj: "fastlaneProjects.xcodeproj"
 )
   end
 
