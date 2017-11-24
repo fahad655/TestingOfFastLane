@@ -19,26 +19,22 @@ jobs:
       # Get the code from the VCS provider.
       - checkout
 
-      - run: bundle update 
-      # - restore_cache:
-      #     keys:
-      #     - v1-gems-{{ checksum "Gemfile.lock" }}
-      #     # Fall back to using the latest cache if no exact match is found.
-      #     - v1-gems-
-      # # Install gems.
-      # - run:
-      #     name: Bundle install
-      #     command: bundle check || bundle update
-      #     environment:
-      #       BUNDLE_JOBS: 4
-      #       BUNDLE_RETRY: 3
-      #       # This is the path where all the gems will be installed, and
-      #       # which CircleCI will later cache.
-      #       BUNDLE_PATH: vendor/bundle
-      # - save_cache:
-      #     key: v1-gems-{{ checksum "Gemfile.lock" }}
-      #     paths:
-      #       - vendor/bundle
+     
+   # Restore bundle cache
+      - type: cache-restore
+        name: Restore bundle cache
+        key: rails-demo-bundle-{{ checksum "Gemfile.lock" }}
+
+      - run:
+          name: Bundle Install
+          command: bundle update --path vendor/bundle
+
+      # Store bundle cache
+      - type: cache-save
+        name: Store bundle cache
+        key: rails-demo-bundle-{{ checksum "Gemfile.lock" }}
+        paths:
+          - vendor/bundle
      
         # Download CocoaPods specs via HTTPS (faster than Git)
         # and install CocoaPods.
