@@ -1,25 +1,25 @@
 # .circleci/config.yml
 
 # Specify the config version - version 2 is latest.
-version: 2
+ version: 2
  
 # # Define the jobs for the current project.
 # no. 1 job is to 
- jobs:
+  jobs:
 
-  build:
-    macos:
-      xcode: "9.1.0"
-    steps:
+    build:
+      macos:
+       xcode: "9.1.0"
+     steps:
       # Get the code from the VCS provider.
-      - checkout
+       - checkout
 
        # Restore bundle cache
-      - type: cache-restore
-        name: Restore bundle cache
-        key: rails-demo-bundle-{{ checksum "Gemfile.lock" }}
+       - type: cache-restore
+          name: Restore bundle cache
+           key: rails-demo-bundle-{{ checksum "Gemfile.lock" }}
 
-      - run:
+       - run:
           name: Bundle update 
           command: bundle update # --path vendor/bundle 
 
@@ -37,22 +37,22 @@ version: 2
           #post: - bundle exec slather
 
 # no. 2 job is to deployment
-  deploy:
+    deploy:
     # Specify the Xcode version to use.
-    macos:
-      xcode: "9.1.0"
-    steps:
+      macos:
+        xcode: "9.1.0"
+      steps:
 
       # Get the code from the VCS provider.
-      - checkout
-      - run:
-          name: Bundle update 
-          command: bundle update # --path vendor/bundle 
+       - checkout
+       - run:
+            name: Bundle update 
+            command: bundle update # --path vendor/bundle 
 
       # Run tests.
-      - run:
-          name: Run Deployments 
-          command: bundle exec fastlane test
+        - run:
+            name: Run Deployments 
+           command: bundle exec fastlane test
           #post: - bundle exec slather
 
 workflows:
