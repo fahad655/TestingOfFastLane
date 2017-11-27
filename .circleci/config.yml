@@ -5,17 +5,12 @@ version: 2
  
 # # Define the jobs for the current project.
 # no. 1 job is to 
-jobs:
+ jobs:
+
   build:
-    # Specify the Xcode version to use.
     macos:
       xcode: "9.1.0"
-    
-    # docker:
-    #   - image: circleci/ruby:2.4-node
-    # Define the steps required to build the project.
     steps:
-
       # Get the code from the VCS provider.
       - checkout
 
@@ -41,26 +36,11 @@ jobs:
           command: bundle exec fastlane test
           #post: - bundle exec slather
 
-      - store_test_results:
-          path: ~/Library/test_output/report.junit
-      - store_artifacts:
-          path: ~/Library/test_output/test-results
-          # Destination is the name of the item in the Artifacts tab
-          # that will contain the paths specified in this step.
-          destination: scan-test-results
-      - store_artifacts:
-          path: ~/Library/Logs/scan
-          destination: scan-logs
-
 # no. 2 job is to deployment
- deploy:
+  deploy:
     # Specify the Xcode version to use.
     macos:
       xcode: "9.1.0"
-    
-    # docker:
-    #   - image: circleci/ruby:2.4-node
-    # Define the steps required to build the project.
     steps:
 
       # Get the code from the VCS provider.
