@@ -47,7 +47,7 @@ jobs:
 
     # Define the steps required to build the project.
     steps:
-
+      
       # Get the code from the VCS provider.
       - checkout
 
@@ -113,6 +113,9 @@ workflows:
   version: 2
   build-and-deploy:
     jobs:
+      filters:
+        branches:
+        only: newBrach
       - build-and-test
       - deploy:
           requires:
