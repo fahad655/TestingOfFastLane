@@ -53,16 +53,16 @@ jobs:
 
       # Download CocoaPods specs via HTTPS (faster than Git)
       # and install CocoaPods.
-      - run:
-          name: Install CocoaPods
-          command: |
-            curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
-            pod install
+      # - run:
+      #     name: Install CocoaPods
+      #     command: |
+      #       curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
+      #       pod install
 
       # Run tests.
       - run:
           name: Run tests
-          command: fastlane scan
+          command: fastlane test
           environment:
             SCAN_DEVICE: iPhone 6
             SCAN_SCHEME: WebTests
@@ -94,7 +94,7 @@ jobs:
       # Build the release version of the app.
       - run:
           name: Build IPA
-          command: fastlane gym
+          command: fastlane test
 
       # Store the IPA file in the build artifacts
       - store_artifacts:
@@ -104,7 +104,7 @@ jobs:
       # Deploy!
       - run:
           name: Deploy to App Store
-          command: fastlane spaceship
+          command: fastlane test
 
 workflows:
   version: 2
@@ -116,4 +116,4 @@ workflows:
             - build-and-test
           filters:
             branches:
-              only: newBrach
+              only: master
