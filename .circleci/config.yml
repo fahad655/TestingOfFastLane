@@ -11,16 +11,17 @@ build:
       - run:
         name: Run tests
         command: bundle exec fastlane test
-  deploy:
-    macos:
-      xcode: "9.1.0"
-    steps: 
-       - checkout
-       - run:
-           name: Bundle update 
-           command: bundle update # --path vendor/bundle 
-           name: Run Deployments 
-           command: bundle exec fastlane test
+deploy:
+  macos:
+    xcode: "9.1.0"
+  steps: 
+      - checkout
+      - run:
+         name: Bundle update 
+         command: bundle update # --path vendor/bundle 
+      - run:
+         name: Run Deployments 
+         command: bundle exec fastlane test
           #post: - bundle exec slather
 
 workflows:
