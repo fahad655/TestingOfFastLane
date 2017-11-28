@@ -1,9 +1,9 @@
 version: 2
 jobs:
-build:
- macos:
-   xcode: "9.1.0" 
-   steps: 
+  build:
+    macos:
+     xcode: "9.1.0" 
+     steps: 
 
      - checkout
      - run:
@@ -12,9 +12,9 @@ build:
      - run:
        name: Run tests
        command: bundle exec fastlane test
-deploy:
-  macos:
-   xcode: "9.1.0"
+  deploy:
+    macos:
+     xcode: "9.1.0"
    steps: 
        - checkout
        - run:
@@ -27,7 +27,7 @@ deploy:
 
 workflows:
   version: 2
-  build:
+  builds:
     jobs:
       - build
       - deploy:
