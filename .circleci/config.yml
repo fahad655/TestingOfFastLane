@@ -1,38 +1,28 @@
-version: 2.0
+version: 2
 jobs:
-build:
- macos:
-   xcode: "9.1.0" 
-   steps: 
-
-     - checkout
-     - run:
-       name: Bundle update 
-       command: bundle update # --path vendor/bundle 
-     - run:
-       name: Run tests
-       command: bundle exec fastlane test
-deploy:
-  macos:
-   xcode: "9.1.0"
-   steps: 
-       - checkout
-       - run:
-           name: Bundle update 
-           command: bundle update # --path vendor/bundle 
-       - run:
-           name: Run Deployments 
-           command: bundle exec fastlane test
-          #post: - bundle exec slather
+  test:
+    macos:
+      xcode: "9.0"
+    steps:
+      - checkout
+      - run: fastlane test
+  deploy:
+    macos:
+      xcode: "9.0"
+    steps:
+      - checkout
+      - deploy:
+          name: Deploy
+          command: fastlane test
 
 workflows:
   version: 2
-  build-deploy:
+  test_release:
     jobs:
-      - build
+      - test
       - deploy:
           requires:
-             - build
+            test
           filters:
-              branches:
-                only: master
+            branches:
+              only: master
