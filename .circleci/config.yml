@@ -7,26 +7,25 @@ build:
       - checkout
       - run:
          name: Bundle update 
-        command: bundle update # --path vendor/bundle 
+        command: bundle update 
       - run:
         name: Run tests
         command: bundle exec fastlane test
 deploy:
   macos:
     xcode: "9.1.0"
-  steps: 
+    steps: 
       - checkout
       - run:
          name: Bundle update 
-         command: bundle update # --path vendor/bundle 
+         command: bundle update
       - run:
          name: Run Deployments 
-         command: bundle exec fastlane test
-          #post: - bundle exec slather
+         command: bundle exec fastlane scan
 
 workflows:
   version: 2
-  build:
+  build-n-deploy:
     jobs:
       - build
       - deploy:
