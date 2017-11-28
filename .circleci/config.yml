@@ -1,4 +1,4 @@
-version: 2.0
+version: 2
 jobs:
 build:
  macos:
@@ -35,4 +35,4 @@ workflows:
              - build
           filters:
               branches:
-                only: master
+                only: newBrach
