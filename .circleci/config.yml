@@ -114,9 +114,12 @@ workflows:
   build-and-deploy:
     jobs:
       - build-and-test
+         filters:
+            branches:
+              only: newBrach
       - deploy:
           # requires:
           #   - build-and-test
           filters:
             branches:
-              only: newBrach
+              only: master
