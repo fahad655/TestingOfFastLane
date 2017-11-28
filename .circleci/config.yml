@@ -25,12 +25,12 @@ build:
 
 workflows:
   version: 2
-  builds:
-      jobs:
-       - build
-        - deploy:
-           requires:
-              - build
-            filters:
-                branches:
-                  only: newBrach
+  build:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+              branches:
+                 only: newBrach
