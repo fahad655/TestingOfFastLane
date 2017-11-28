@@ -64,7 +64,7 @@ jobs:
       # Run tests.
       - run:
           name: Run tests
-          command: fastlane test
+          command: bundle exec fastlane test
           environment:
             SCAN_DEVICE: iPhone 6
 
@@ -86,16 +86,18 @@ jobs:
 
     steps:
       - checkout
-
-      # Set up code signing via Fastlane Match.
       - run:
-          name: Set up code signing
-          command: fastlane match development --readonly
+          name: Bundle update 
+          command: bundle update
+      # Set up code signing via Fastlane Match.
+      # - run:
+      #     name: Set up code signing
+      #     command: fastlane match development --readonly
 
       # Build the release version of the app.
       - run:
           name: Build IPA
-          command: fastlane test
+          command: bundle exec fastlane test
 
       # Store the IPA file in the build artifacts
       - store_artifacts:
@@ -105,7 +107,7 @@ jobs:
       # Deploy!
       - run:
           name: Deploy to App Store
-          command: fastlane test
+          command: bundle exec fastlane test
 
 workflows:
   version: 2
