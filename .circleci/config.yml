@@ -116,7 +116,7 @@ workflows:
       - build-and-test:
          filters:
             branches:
-              only: newBrach
+              only: master
       # - deploy:
           # requires:
           #   - build-and-test
