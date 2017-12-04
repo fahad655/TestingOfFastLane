@@ -437,7 +437,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = JC5HA43C7P;
 				INFOPLIST_FILE = fastlaneProjects/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
@@ -459,7 +459,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = JC5HA43C7P;
 				INFOPLIST_FILE = fastlaneProjects/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
